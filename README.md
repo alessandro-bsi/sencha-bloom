@@ -122,11 +122,14 @@ The implementation of ERC-725/735 standards is **not production-ready** and shou
 ---
 
 ### **Threat Modeling with PyTM**
+
 To ensure the security and robustness of the chatroom architecture, we conducted a detailed threat modeling process using **PyTM**. This helped us identify potential attack vectors and vulnerabilities within our hybrid system. The model accounted for critical components like the blockchain, secrets-service, IPFS, and Nginx reverse proxy, highlighting risks such as unauthorized access to private rooms, misuse of cryptographic keys, and denial-of-service attacks on centralized components. Mitigations were proposed for each identified threat, focusing on implementing stricter access controls, monitoring, and secure key management practices.
 
 ### **Anomaly Detection with Isolation Forest**
+
 To enhance the system’s resilience, we implemented an anomaly detection mechanism using **Isolation Forest** to analyze Nginx logs. This machine learning-based approach helps identify unusual patterns, such as repeated unauthorized access attempts or irregular traffic spikes that could indicate potential attacks. By preprocessing logs and extracting relevant features like request frequency, user-agent patterns, and source IPs, the Isolation Forest model can flag anomalies in near real-time, which can enable proactive response to potential threats.
 However, it must be noted that currently the system is used offline-only.
+
 ---
 
 ## **Future Improvements**
