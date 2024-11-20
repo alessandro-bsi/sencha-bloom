@@ -1,0 +1,209 @@
+version: '3.8'
+
+services:
+  ganache:
+    image: trufflesuite/ganache
+    networks:
+      localnet:
+        ipv4_address: 172.20.0.16
+    ports:
+      - "7545:7545"
+    volumes:
+      - ./data/ganache:/ganache_data
+    entrypoint:
+      - node
+      - /app/dist/node/cli.js
+      - --db=/ganache_data
+      - --accounts=100
+      - --mnemonic
+      - 'minimum symptom minute gloom tragic situate silver mechanic salad amused elite beef'
+      - --networkId
+      - '5777'
+      - -h
+      - '0.0.0.0'
+      - -p
+      - '7545'
+    labels:
+      local.ssi.exam: "Ganache Blockchain Network"
+
+  truffle:
+    build: .
+    depends_on:
+      - ganache
+    working_dir: /compiler
+    volumes:
+      - .:/compiler
+    networks:
+      - localnet
+    command: >
+      sh -c "rm -f ./express/client/src/artifacts/*.json &&
+             rm -f ./secrets-service/artifacts/*.json &&
+             rm -f ./verification-service/artifacts/*.json &&
+             truffle migrate --reset && 
+             cp -r ./express/client/src/artifacts ./verification-service/ && 
+             cp -r ./express/client/src/artifacts ./secrets-service/ &&
+             ls -l ./express/client/src/artifacts"
+    environment:
+      RPC_SERVER: 172.20.0.16
+    labels:
+      local.ssi.exam: "Smart Contracts Compiler"
+
+  react-app:
+    build: ./express
+    depends_on:
+      - ganache
+      - truffle
+      - mongo
+    networks:
+      localnet:
+        ipv4_address: 172.20.0.10
+    links:
+      - "truffle:truffle"
+    ports:
+      - "3000:3000"
+      - "5000:5000"
+    volumes:
+      - ./express:/usr/app/
+      - /usr/app/node_modules
+      - /usr/app/client/node_modules
+    working_dir: /usr/app
+    environment:
+      - REACT_APP_RPC_SERVER=https://ganache.ssi.local
+      - REACT_APP_MONGO_DB_URI=mongodb://mongo:27017
+      - REACT_APP_MONGO_DB_NAME=verifications
+      - RPC_SERVER=http://172.20.0.16:7545
+      - NODE_ENV=production
+    command: >
+      bash -c 'while ! find /usr/app/client/src/artifacts -type f -name "*.json" | grep -q .; do sleep 1; done && sleep 10 && ./setup.sh'
+    labels:
+      local.ssi.exam: "React Web Frontend"
+
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    networks:
+      localnet:
+        ipv4_address: 172.20.0.32
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data/db:/data/db
+    restart: always
+    command: >
+      bash -c "chown -R 999:999 /data/db && chmod -R 700 /data/db && mongod --dbpath /data/db --bind_ip_all"
+    labels:
+      local.ssi.exam: "Web Service Database"
+
+  ipfs-node:
+    build: ./ipfs
+    networks:
+      localnet:
+        ipv4_address: 172.20.0.4
+    ports:
+      - "4001:4001"
+      - "5001:5001"
+      - "8080:8080"
+    volumes:
+      - ./data/ipfs:/data/ipfs
+    labels:
+      local.ssi.exam: "IPFS Gateway"
+
+  python-ca-manager:
+    image: python:3.12
+    container_name: camanager
+    working_dir: /usr/src/app
+    volumes:
+      - ./camanager:/usr/src/app
+      - ./data/nginx/certs:/usr/src/app/certs
+    networks:
+      - localnet
+    command: >
+      bash -c "pip3 install --root-user-action 'ignore' -r requirements.txt && python3 ca-manager.py native -o certs"
+    labels:
+      local.ssi.exam: "PKI Manager"
+
+  nginx-proxy:
+    image: nginx:latest
+    container_name: proxy.ssi.local
+    depends_on:
+      - ganache
+      - truffle
+      - react-app
+      - mongo
+      - ipfs-node
+      - python-ca-manager
+    volumes:
+      - ./data/nginx/certs:/etc/nginx/certs
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/ssl-proxy.conf
+    ports:
+      - "443:443"
+    restart: always
+    networks:
+      localnet:
+        ipv4_address: 172.20.0.99
+    labels:
+      local.ssi.exam: "Reverse Proxy"
+
+  verification-service:
+    build: ./verification-service
+    ports:
+      - "5555:5555"
+    working_dir: /app
+    environment:
+      - RPC_SERVER=http://172.20.0.16:7545
+      - NODE_ENV=production
+      - PORT=5555
+      - MONGO_DB_URI=mongodb://172.20.0.32:27017
+      - MONGO_DB_NAME=verifications
+      - SERVICE_ADDRESS_INDEX=1
+    depends_on:
+      - ganache
+      - truffle
+      - mongo
+    volumes:
+      - ./verification-service:/app
+      - ./data/uploads:/app/uploads
+      - ./data/codes:/app/codes
+      - /app/node_modules
+    networks:
+      localnet:
+        ipv4_address: 172.20.0.11
+    command: >
+      bash -c 'while ! find /app/artifacts -type f -name "*.json" | grep -q .; do sleep 1; done && sleep 10 && npm install && npm start'
+    labels:
+      local.ssi.exam: "User Verification Service"
+
+  secrets-service:
+    build: ./secrets-service
+    ports:
+      - "6666:6666"
+    working_dir: /app
+    volumes:
+      - ./secrets-service:/app
+      - /app/node_modules
+    environment:
+      - RPC_SERVER=http://172.20.0.16:7545
+      - NODE_ENV=production
+      - PORT=6666
+      - MONGO_DB_URI=mongodb://172.20.0.32:27017
+      - MONGO_DB_NAME=secrets
+      - SERVICE_ADDRESS_INDEX=4
+    depends_on:
+      - ganache
+      - truffle
+      - mongo
+    networks:
+      localnet:
+        ipv4_address: 172.20.0.33
+    command: >
+      bash -c 'while ! find /app/artifacts -type f -name "*.json" | grep -q .; do sleep 1; done && sleep 10 && npm install && npm start'
+    labels:
+      local.ssi.exam: "Secret Sharing Service"
+
+networks:
+  localnet:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+          gateway: 172.20.0.1

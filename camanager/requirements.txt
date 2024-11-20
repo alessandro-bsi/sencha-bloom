@@ -1,0 +1,4 @@
+colorama
+pycryptodome
+cryptography
+sanitize-filename

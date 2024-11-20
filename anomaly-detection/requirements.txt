@@ -1,0 +1,4 @@
+geoip2
+scikit-learn
+ua_parser
+numpy

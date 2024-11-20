@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "@onchain-id/solidity": "^2.2.1",
+    "@openzeppelin/contracts": "^4.9.6",
+    "dotenv": "^16.4.5",
+    "elliptic": "^6.6.0",
+    "express": "^4.21.1",
+    "ipfs-http-client": "^56.0.2",
+    "sinon": "^19.0.2",
+    "truffle": "^5.7.4",
+    "ws": "^8.18.0"
+  }
+}

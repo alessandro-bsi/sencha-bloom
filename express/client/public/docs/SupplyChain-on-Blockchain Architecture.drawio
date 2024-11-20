@@ -1,0 +1,89 @@
+<mxfile host="app.diagrams.net" modified="2024-01-16T16:38:38.269Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" etag="cVlJJ2x1NMxyXxpdD4L0" version="22.1.18" type="device">
+  <diagram name="Page-1" id="3HgQr5gv_4ipcGMV34vw">
+    <mxGraphModel dx="1434" dy="1838" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="YFSdNmZZ83d6byBhx7nz-36" value="&lt;span style=&quot;font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;&lt;b&gt;Bytecode&lt;/b&gt;&lt;/span&gt;" style="text;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontColor=#0066CC;" vertex="1" parent="1">
+          <mxGeometry x="690" y="130" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="YFSdNmZZ83d6byBhx7nz-25" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;labelBackgroundColor=none;fontColor=#0066CC;strokeColor=#808080;" edge="1" parent="1" source="YFSdNmZZ83d6byBhx7nz-1" target="YFSdNmZZ83d6byBhx7nz-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YFSdNmZZ83d6byBhx7nz-1" value="Signer/Wallet&#xa;(MetaMask)" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=none;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://cdn.iconscout.com/icon/free/png-256/free-metamask-2728406-2261817.png;fontStyle=1;fontColor=#0066CC;" vertex="1" parent="1">
+          <mxGeometry x="369" y="74" width="56" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="YFSdNmZZ83d6byBhx7nz-3" value="&lt;b&gt;Blockchain&lt;/b&gt;" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=none;imageAspect=0;aspect=fixed;image=https://cdn3.iconfinder.com/data/icons/currency-and-cryptocurrency-signs/64/cryptocurrency_blockchain_Ethereum_ETH-128.png;fontColor=#0066CC;" vertex="1" parent="1">
+          <mxGeometry x="691" y="177" width="128" height="128" as="geometry" />
+        </mxCell>
+        <mxCell id="YFSdNmZZ83d6byBhx7nz-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;labelBackgroundColor=none;fontColor=#0066CC;strokeColor=#808080;" edge="1" parent="1" source="YFSdNmZZ83d6byBhx7nz-4" target="YFSdNmZZ83d6byBhx7nz-27">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YFSdNmZZ83d6byBhx7nz-4" value="&lt;b&gt;Frontend&lt;/b&gt;" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=none;imageAspect=0;aspect=fixed;image=https://cdn1.iconfinder.com/data/icons/unicons-line-vol-5/24/react-128.png;fontColor=#0066CC;" vertex="1" parent="1">
+          <mxGeometry x="510" y="202" width="78" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="YFSdNmZZ83d6byBhx7nz-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;labelBackgroundColor=none;fontColor=#0066CC;strokeColor=#808080;" edge="1" parent="1" source="YFSdNmZZ83d6byBhx7nz-9" target="YFSdNmZZ83d6byBhx7nz-20">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="550" y="50" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="YFSdNmZZ83d6byBhx7nz-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;labelBackgroundColor=none;fontColor=#0066CC;strokeColor=#808080;" edge="1" parent="1" source="YFSdNmZZ83d6byBhx7nz-9" target="YFSdNmZZ83d6byBhx7nz-18">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="760" y="140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="YFSdNmZZ83d6byBhx7nz-9" value="&lt;b&gt;Smart Contract&lt;/b&gt;" style="image;aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;fontColor=#0066CC;labelBackgroundColor=none;fontSize=12;spacingTop=3;image=img/lib/ibm/blockchain/smart_contract.svg;" vertex="1" parent="1">
+          <mxGeometry x="620" y="-40" width="70" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="YFSdNmZZ83d6byBhx7nz-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;labelBackgroundColor=none;fontColor=#0066CC;strokeColor=#808080;" edge="1" parent="1" source="YFSdNmZZ83d6byBhx7nz-14" target="YFSdNmZZ83d6byBhx7nz-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YFSdNmZZ83d6byBhx7nz-14" value="&lt;b&gt;User&lt;/b&gt;" style="html=1;verticalLabelPosition=bottom;align=center;labelBackgroundColor=none;verticalAlign=top;strokeWidth=2;strokeColor=#6c8ebf;shadow=0;dashed=0;shape=mxgraph.ios7.icons.user;fillColor=#dae8fc;fontColor=#0066CC;" vertex="1" parent="1">
+          <mxGeometry x="240" y="211" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="YFSdNmZZ83d6byBhx7nz-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;labelBackgroundColor=none;fontColor=#0066CC;strokeColor=#808080;" edge="1" parent="1" source="YFSdNmZZ83d6byBhx7nz-15" target="YFSdNmZZ83d6byBhx7nz-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YFSdNmZZ83d6byBhx7nz-15" value="Web Browser" style="verticalLabelPosition=bottom;sketch=0;aspect=fixed;html=1;verticalAlign=top;strokeColor=none;align=center;outlineConnect=0;shape=mxgraph.citrix.browser;labelBackgroundColor=none;fontStyle=1;fontColor=#0066CC;" vertex="1" parent="1">
+          <mxGeometry x="373.25" y="204.75" width="47.5" height="72.5" as="geometry" />
+        </mxCell>
+        <mxCell id="YFSdNmZZ83d6byBhx7nz-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;labelBackgroundColor=none;fontColor=#0066CC;strokeColor=#808080;" edge="1" parent="1" source="YFSdNmZZ83d6byBhx7nz-18" target="YFSdNmZZ83d6byBhx7nz-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YFSdNmZZ83d6byBhx7nz-18" value="" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=none;imageAspect=0;aspect=fixed;image=https://cdn1.iconfinder.com/data/icons/nuvola2/128x128/mimetypes/binary.png;fontColor=#0066CC;" vertex="1" parent="1">
+          <mxGeometry x="720" y="60" width="70" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="YFSdNmZZ83d6byBhx7nz-21" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;labelBackgroundColor=none;fontColor=#0066CC;" edge="1" parent="1" source="YFSdNmZZ83d6byBhx7nz-20" target="YFSdNmZZ83d6byBhx7nz-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YFSdNmZZ83d6byBhx7nz-32" value="" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;labelBackgroundColor=none;fontColor=#0066CC;strokeColor=#808080;" edge="1" parent="1" source="YFSdNmZZ83d6byBhx7nz-20" target="YFSdNmZZ83d6byBhx7nz-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YFSdNmZZ83d6byBhx7nz-20" value="" style="dashed=0;outlineConnect=0;html=1;align=center;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;shape=mxgraph.weblogos.json_2;labelBackgroundColor=none;fontColor=#0066CC;" vertex="1" parent="1">
+          <mxGeometry x="510" y="60" width="80.4" height="25.200000000000003" as="geometry" />
+        </mxCell>
+        <mxCell id="YFSdNmZZ83d6byBhx7nz-24" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=-0.033;entryDx=0;entryDy=0;entryPerimeter=0;labelBackgroundColor=none;fontColor=#0066CC;strokeColor=#808080;" edge="1" parent="1" source="YFSdNmZZ83d6byBhx7nz-1" target="YFSdNmZZ83d6byBhx7nz-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YFSdNmZZ83d6byBhx7nz-29" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;labelBackgroundColor=none;fontColor=#0066CC;strokeColor=#808080;" edge="1" parent="1" source="YFSdNmZZ83d6byBhx7nz-27" target="YFSdNmZZ83d6byBhx7nz-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YFSdNmZZ83d6byBhx7nz-27" value="&lt;b&gt;Node&lt;/b&gt;" style="image;aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;spacingTop=3;image=img/lib/active_directory/generic_node.svg;labelBackgroundColor=none;fontColor=#0066CC;" vertex="1" parent="1">
+          <mxGeometry x="630" y="216.5" width="50" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="YFSdNmZZ83d6byBhx7nz-31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBackgroundColor=none;fontColor=#0066CC;strokeColor=#808080;" edge="1" parent="1" source="YFSdNmZZ83d6byBhx7nz-30" target="YFSdNmZZ83d6byBhx7nz-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YFSdNmZZ83d6byBhx7nz-30" value="" style="html=1;verticalLabelPosition=bottom;align=center;labelBackgroundColor=none;verticalAlign=top;strokeWidth=2;strokeColor=#b85450;shadow=0;dashed=0;shape=mxgraph.ios7.icons.user;fillColor=#f8cecc;fontColor=#0066CC;" vertex="1" parent="1">
+          <mxGeometry x="625" y="-160" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="YFSdNmZZ83d6byBhx7nz-33" value="&lt;b&gt;Contract Owner&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=none;fontColor=#0066CC;" vertex="1" parent="1">
+          <mxGeometry x="610.5" y="-190" width="89" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="YFSdNmZZ83d6byBhx7nz-34" value="&lt;span style=&quot;font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;&lt;b&gt;ABI&lt;/b&gt;&lt;/span&gt;" style="text;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontColor=#0066CC;" vertex="1" parent="1">
+          <mxGeometry x="560.5" y="90" width="50" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
