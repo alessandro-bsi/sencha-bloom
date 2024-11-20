@@ -133,8 +133,6 @@ However, it must be noted that currently the system is used offline-only.
 ---
 
 ## **Future Improvements**
-- Add decentralized governance for room creation and management.
-- Automate identity verification through integration with real-world verification systems.
-- Extend support for multi-chain environments (e.g., Polygon, Binance Smart Chain).
+- TBD
 
 ---
