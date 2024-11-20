@@ -11,6 +11,7 @@ function Chat() {
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState('');
     const [joinRequests, setJoinRequests] = useState([]);
+    const [isPrivateRoom, setIsPrivateRoom] = useState(false);
     const history = useHistory();
 
     const EC = require("elliptic").ec;
@@ -22,7 +23,10 @@ function Chat() {
             const accounts = await web3.eth.getAccounts();
             const userAddress = accounts[0];
 
-            console.log(`User Address> ${userAddress}`);
+            console.log(`User Address: ${userAddress}`);
+
+            let isPrivate = await chatContract.methods.isRoomPrivate(roomId).call({from: userAddress});
+            setIsPrivateRoom(isPrivate);
 
             // Check if user is a member of the chat room
             const isMember = await chatContract.methods.isMemberOf(roomId).call({from: userAddress});
@@ -39,9 +43,11 @@ function Chat() {
                 console.log(e);
             });
 
-            // Load join requests
-            const requests = await chatContract.methods.getJoinRequests(roomId).call({from: userAddress});
-            setJoinRequests(requests);
+            if(isPrivate){
+                // Load join requests
+                const requests = await chatContract.methods.getJoinRequests(roomId).call({from: userAddress});
+                setJoinRequests(requests);
+            }
         };
         loadData();
     }, [roomId, history]);
@@ -98,8 +104,9 @@ function Chat() {
                 while (secretStack.length > 0) {
                     const currentSharedSecret = secretStack[secretStack.length - 1];
                     try {
-                        const encryptedMessage = await retrieveFromIPFS(hash);
-                        decryptedMessage = decryptMessage(currentSharedSecret, encryptedMessage);
+                        //
+                        // const encryptedMessage = await retrieveFromIPFS(hash);
+                        decryptedMessage = decryptMessage(currentSharedSecret, hash);
 
                         if (decryptedMessage) {
                             decryptedMessages.push(decryptedMessage);
@@ -117,13 +124,13 @@ function Chat() {
                     secrets.push(newSharedSecret);  // Push new secret to the stack
                     updateRoomState(roomId, { secrets, publicKeys });
 
-                    const encryptedMessage = await retrieveFromIPFS(hash);
-                    decryptedMessage = decryptMessage(newSharedSecret, encryptedMessage);
+                    // const encryptedMessage = await retrieveFromIPFS(hash);
+                    decryptedMessage = decryptMessage(newSharedSecret, hash);
                     decryptedMessages.push(decryptedMessage);
                 }
             } else {
-                let message = await retrieveFromIPFS(hash);
-                decryptedMessages.push(message);
+                // let message = await retrieveFromIPFS(hash);
+                decryptedMessages.push(hash);
             }
         }
 
@@ -132,7 +139,14 @@ function Chat() {
 
     // Send a new message
     const sendMessage = async (roomId, user) => {
-        console.log(roomId);
+        console.log(`RoomId: ${roomId}`);
+        console.log(`User: ${user}`);
+
+        if(!user){
+            await setupWeb3();
+            const accounts = await web3.eth.getAccounts();
+            user = accounts[0];
+        }
 
         if (!newMessage.trim()) {
             alert('Message cannot be empty!');
@@ -170,11 +184,13 @@ function Chat() {
                 encryptedMessage = newMessage;
             }
             // Upload the encrypted message to IPFS
-            const messageHash = await uploadToIPFS(encryptedMessage);
-            await chatContract.methods.sendMessage(roomId, messageHash).send({ from: user });
+            // const messageHash = await uploadToIPFS(encryptedMessage);
+            // console.log(`Message Hash: ${messageHash}`);
+
+            await chatContract.methods.sendMessage(roomId, encryptedMessage).send({ from: user });
 
             setNewMessage('');  // Clear input
-            await loadAndDecryptMessages(roomId);  // Refresh messages
+            await loadAndDecryptMessages(roomId, user);  // Refresh messages
         } catch (error) {
             console.error('Error sending message:', error);
         }
@@ -250,7 +266,7 @@ function Chat() {
             {/* Messages Panel */}
             <div className="messages" style={{ height: '300px', overflowY: 'scroll', marginBottom: '20px' }}>
                 {messages.map((msg, idx) => (
-                    <div key={idx}>{msg.sender}: {msg}</div>
+                    <div key={idx}>{msg.sender}: {msg.messageHash}</div>
                 ))}
             </div>
 
@@ -262,7 +278,7 @@ function Chat() {
                     onChange={(e) => setNewMessage(e.target.value)}
                     placeholder="Write your message"
                 />
-                <button className="btn btn-primary" onClick={sendMessage}>Send</button>
+                <button className="btn btn-primary" onClick={() => sendMessage(roomId, userAddress)}>Send</button>
             </div>
         </div>
     );

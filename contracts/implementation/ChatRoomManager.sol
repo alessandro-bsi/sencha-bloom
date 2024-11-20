@@ -14,13 +14,18 @@ contract ChatRoomManager {
         bytes eccPublicKey;
     }
 
+    struct Message {
+        address sender;
+        string messageHash;
+    }
+
     struct ChatRoom {
         string name;
         string description;
         bool isPrivate;
         address[] members;
         mapping(address => bool) isMember;
-        string[] messageHashes;
+        Message[] messages; // Array of messages with sender info
         mapping(address => JoinRequest) joinRequests;
         address[] joinRequestList;
         mapping(address => bytes) eccPublicKeys;
@@ -31,7 +36,7 @@ contract ChatRoomManager {
         string description;
         bool isPrivate;
         address[] members;
-        string[] messageHashes;
+        Message[] messageHashes;
     }
 
     mapping(address => string) public nicknames;
@@ -174,7 +179,7 @@ contract ChatRoomManager {
                 description: room.description,
                 isPrivate: room.isPrivate,
                 members: room.members,
-                messageHashes: room.messageHashes
+                messageHashes: room.messages
             });
         }
 
@@ -316,13 +321,16 @@ contract ChatRoomManager {
         ChatRoom storage chatRoom = chatRooms[roomId];
         require(!chatRoom.isPrivate || chatRoom.isMember[msg.sender], "Not a member of this private room");
         require(!chatRoom.isPrivate || chatRoom.eccPublicKeys[msg.sender].length != 0, "Any member should register an ECC key pair to send messages");
-        chatRoom.messageHashes.push(messageHash);
+        chatRoom.messages.push(Message({
+            sender: msg.sender,
+            messageHash: messageHash
+        }));
         emit MessageSent(roomId, msg.sender, messageHash);
     }
 
-    function getMessages(uint roomId) public view onlyVerifiedUser returns (string[] memory) {
+    function getMessages(uint roomId) public view onlyVerifiedUser returns (Message[] memory) {
         ChatRoom storage chatRoom = chatRooms[roomId];
         require(!chatRoom.isPrivate || chatRoom.isMember[msg.sender], "Not a member of this private room");
-        return chatRoom.messageHashes;
+        return chatRoom.messages;
     }
 }

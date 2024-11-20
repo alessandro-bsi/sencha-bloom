@@ -4,7 +4,6 @@ const bodyParser = require('body-parser');
 const crypto = require('crypto');
 const mongoose = require('mongoose');
 const EC = require('elliptic').ec;
-const { setupWeb3, web3, chatContract, serviceAddress } = require('./web3Config.js');
 const cors = require('cors');
 
 const ec = new EC('secp256k1');
@@ -50,6 +49,27 @@ app.get('/api/secret/:roomId', async (req, res) => {
     const { userId, userPublicKey } = req.query;
 
     try {
+        let web3 = new Web3(new Web3.providers.HttpProvider(process.env.RPC_SERVER));
+        let chatContract;
+        let serviceAddress;
+
+        // Use the deployed address for the contract from the ABI file and network data
+        const networkId = await web3.eth.net.getId();
+        const networkData = contractABI.networks[networkId];
+        const index = process.env.SERVICE_ADDRESS_INDEX;
+
+        if (networkData) {
+            chatContract = new web3.eth.Contract(contractABI.abi, networkData.address);
+            const accounts = await web3.eth.getAccounts();
+            if (accounts.length > index) {
+                serviceAddress = accounts[index];
+                console.log(`Service address set to account at index ${index}: ${serviceAddress}`);
+            } else {
+                throw new Error(`No account found at index ${index}`);
+            }
+
+        }
+
         // Validate membership and public key
         const isMember = await chatContract.methods.userIsMemberOf(userId, roomId).call({ from: serviceAddress });
         if (!isMember) return res.status(403).json({ error: 'User is not a member of the room' });
@@ -100,6 +120,28 @@ app.post('/api/secret/:roomId', async (req, res) => {
     const { userId, userPublicKey, encryptedNonce } = req.body;
 
     try {
+
+        let web3 = new Web3(new Web3.providers.HttpProvider(process.env.RPC_SERVER));
+        let chatContract;
+        let serviceAddress;
+
+        // Use the deployed address for the contract from the ABI file and network data
+        const networkId = await web3.eth.net.getId();
+        const networkData = contractABI.networks[networkId];
+        const index = process.env.SERVICE_ADDRESS_INDEX;
+
+        if (networkData) {
+            chatContract = new web3.eth.Contract(contractABI.abi, networkData.address);
+            const accounts = await web3.eth.getAccounts();
+            if (accounts.length > index) {
+                serviceAddress = accounts[index];
+                console.log(`Service address set to account at index ${index}: ${serviceAddress}`);
+            } else {
+                throw new Error(`No account found at index ${index}`);
+            }
+
+        }
+
         // Retrieve and validate nonce
         const roomNonce = await Nonce.findOne({ roomId });
         if (!roomNonce) return res.status(404).json({ error: 'Nonce not found for this room' });
@@ -156,7 +198,6 @@ app.post('/api/secret/:roomId', async (req, res) => {
 // Initialize Web3 and start the server
 (async () => {
     try {
-        await setupWeb3();
         app.use(cors({ origin: '*', methods: ['GET', 'POST'], allowedHeaders: ['Content-Type'] }));
         app.listen(port, '0.0.0.0', () => console.log(`Server running on http://localhost:${port}`));
     } catch (error) {

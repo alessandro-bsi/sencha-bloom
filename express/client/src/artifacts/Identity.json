@@ -8293,21 +8293,21 @@
     "absolutePath": "project:/contracts/implementation/identity/Identity.sol",
     "exportedSymbols": {
       "ERC725": [
-        2608
+        2620
       ],
       "ERC735": [
-        2878
+        2890
       ],
       "Identity": [
-        2907
+        2919
       ]
     },
-    "id": 2908,
+    "id": 2920,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2880,
+        "id": 2892,
         "literals": [
           "solidity",
           "^",
@@ -8320,11 +8320,11 @@
       {
         "absolutePath": "project:/contracts/implementation/identity/ERC725.sol",
         "file": "./ERC725.sol",
-        "id": 2881,
+        "id": 2893,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 2908,
-        "sourceUnit": 2609,
+        "scope": 2920,
+        "sourceUnit": 2621,
         "src": "60:22:8",
         "symbolAliases": [],
         "unitAlias": ""
@@ -8332,11 +8332,11 @@
       {
         "absolutePath": "project:/contracts/implementation/identity/ERC735.sol",
         "file": "./ERC735.sol",
-        "id": 2882,
+        "id": 2894,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 2908,
-        "sourceUnit": 2879,
+        "scope": 2920,
+        "sourceUnit": 2891,
         "src": "84:22:8",
         "symbolAliases": [],
         "unitAlias": ""
@@ -8346,40 +8346,40 @@
         "baseContracts": [
           {
             "baseName": {
-              "id": 2883,
+              "id": 2895,
               "name": "ERC725",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 2608,
+              "referencedDeclaration": 2620,
               "src": "131:6:8"
             },
-            "id": 2884,
+            "id": 2896,
             "nodeType": "InheritanceSpecifier",
             "src": "131:6:8"
           },
           {
             "baseName": {
-              "id": 2885,
+              "id": 2897,
               "name": "ERC735",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 2878,
+              "referencedDeclaration": 2890,
               "src": "139:6:8"
             },
-            "id": 2886,
+            "id": 2898,
             "nodeType": "InheritanceSpecifier",
             "src": "139:6:8"
           }
         ],
         "contractDependencies": [
-          2608,
-          2878
+          2620,
+          2890
         ],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 2907,
+        "id": 2919,
         "linearizedBaseContracts": [
-          2907,
-          2878,
-          2608
+          2919,
+          2890,
+          2620
         ],
         "name": "Identity",
         "nameLocation": "119:8:8",
@@ -8388,12 +8388,12 @@
           {
             "constant": true,
             "functionSelector": "ad376eff",
-            "id": 2889,
+            "id": 2901,
             "mutability": "constant",
             "name": "ECDSA_KEY",
             "nameLocation": "177:9:8",
             "nodeType": "VariableDeclaration",
-            "scope": 2907,
+            "scope": 2919,
             "src": "153:37:8",
             "stateVariable": true,
             "storageLocation": "default",
@@ -8402,7 +8402,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 2887,
+              "id": 2899,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
               "src": "153:7:8",
@@ -8413,7 +8413,7 @@
             },
             "value": {
               "hexValue": "31",
-              "id": 2888,
+              "id": 2900,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -8431,7 +8431,7 @@
           },
           {
             "body": {
-              "id": 2905,
+              "id": 2917,
               "nodeType": "Block",
               "src": "242:149:8",
               "statements": [
@@ -8443,11 +8443,11 @@
                           {
                             "arguments": [
                               {
-                                "id": 2898,
+                                "id": 2910,
                                 "name": "_initialManagementKey",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 2891,
+                                "referencedDeclaration": 2903,
                                 "src": "332:21:8",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_address",
@@ -8463,7 +8463,7 @@
                                 }
                               ],
                               "expression": {
-                                "id": 2896,
+                                "id": 2908,
                                 "name": "abi",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
@@ -8474,7 +8474,7 @@
                                   "typeString": "abi"
                                 }
                               },
-                              "id": 2897,
+                              "id": 2909,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": true,
@@ -8487,7 +8487,7 @@
                                 "typeString": "function () pure returns (bytes memory)"
                               }
                             },
-                            "id": 2899,
+                            "id": 2911,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
@@ -8510,7 +8510,7 @@
                               "typeString": "bytes memory"
                             }
                           ],
-                          "id": 2895,
+                          "id": 2907,
                           "name": "keccak256",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
@@ -8521,7 +8521,7 @@
                             "typeString": "function (bytes memory) pure returns (bytes32)"
                           }
                         },
-                        "id": 2900,
+                        "id": 2912,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -8537,11 +8537,11 @@
                         }
                       },
                       {
-                        "id": 2901,
+                        "id": 2913,
                         "name": "MANAGEMENT_KEY",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2209,
+                        "referencedDeclaration": 2221,
                         "src": "357:14:8",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -8549,11 +8549,11 @@
                         }
                       },
                       {
-                        "id": 2902,
+                        "id": 2914,
                         "name": "ECDSA_KEY",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2889,
+                        "referencedDeclaration": 2901,
                         "src": "373:9:8",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -8576,18 +8576,18 @@
                           "typeString": "uint256"
                         }
                       ],
-                      "id": 2894,
+                      "id": 2906,
                       "name": "addKey",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 2422,
+                      "referencedDeclaration": 2434,
                       "src": "298:6:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_bytes32_$_t_uint256_$_t_uint256_$returns$_t_bool_$",
                         "typeString": "function (bytes32,uint256,uint256) returns (bool)"
                       }
                     },
-                    "id": 2903,
+                    "id": 2915,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -8602,13 +8602,13 @@
                       "typeString": "bool"
                     }
                   },
-                  "id": 2904,
+                  "id": 2916,
                   "nodeType": "ExpressionStatement",
                   "src": "298:85:8"
                 }
               ]
             },
-            "id": 2906,
+            "id": 2918,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
@@ -8616,17 +8616,17 @@
             "nameLocation": "-1:-1:-1",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2892,
+              "id": 2904,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2891,
+                  "id": 2903,
                   "mutability": "mutable",
                   "name": "_initialManagementKey",
                   "nameLocation": "219:21:8",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2906,
+                  "scope": 2918,
                   "src": "211:29:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -8635,7 +8635,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2890,
+                    "id": 2902,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "211:7:8",
@@ -8651,19 +8651,19 @@
               "src": "210:31:8"
             },
             "returnParameters": {
-              "id": 2893,
+              "id": 2905,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "242:0:8"
             },
-            "scope": 2907,
+            "scope": 2919,
             "src": "199:192:8",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           }
         ],
-        "scope": 2908,
+        "scope": 2920,
         "src": "110:284:8"
       }
     ],
@@ -8677,12 +8677,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x6a789388254de2a6CD519c5A9341B6106fB2e5DF",
-      "transactionHash": "0x36f87f9b783ce67e97ba0edcfb4616aa7ccd7721916ea1fd833c3971d031468f"
+      "address": "0x4d66C02Fa3E03fD2ce3A3360d237a590062c6D75",
+      "transactionHash": "0x119b947e3c60d6be737cb7093837afee8b10712f43fe4d1dbbeaf05b81eb3681"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2024-11-19T23:23:57.788Z",
+  "updatedAt": "2024-11-20T09:17:17.201Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

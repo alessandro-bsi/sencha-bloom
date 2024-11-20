@@ -102,7 +102,7 @@ services:
     ports:
       - "4001:4001"
       - "5001:5001"
-      - "8080:8080"
+      - "0.0.0.0:8080:8080"
     volumes:
       - ./data/ipfs:/data/ipfs
     labels:
